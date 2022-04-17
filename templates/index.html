@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ title }}
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <h1>Мои посты</h1>
+
+    {% for post in posts %}
+    <p>
+        <h2>{{loop.index}}: <a href="posts/{{ post.slug }}.html">{{post.title}}</a></h2>
+        <b><small>{{post.date}}</small></b>
+        <br>
+        {{post.summary}}
+    </p>
+    {% set list_of_tags = post.tags.split(",") %}
+    {% for tag in list_of_tags %}
+    <span class="badge bg-primary">
+        {{ tag }}
+    </span>
+    {% endfor %}
+</div>
+{% endfor %}
+{% endblock %}
